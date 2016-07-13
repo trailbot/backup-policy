@@ -2,7 +2,7 @@
   "name": "policy-copier",
   "version": "0.0.1",
   "dependencies": {
-  }
+  },
   "policy": {
     "language": "coffeescript",
     "params": {
