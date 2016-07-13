@@ -3,4 +3,13 @@
   "version": "0.0.1",
   "dependencies": {
   }
+  "policy": {
+    "language": "coffeescript",
+    "params": {
+      "copyTo": {
+        "type": "text",
+        "label": "Path to copy to"
+      }
+    }
+  }
 }
