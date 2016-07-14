@@ -15,6 +15,11 @@ class Copier
 
   receiver : (changes) =>
     console.log 'Processing changes', changes
-    fs.appendFile @file, "#{JSON.stringify(changes)}#{os.EOL}"
+    string = ""
+    for change in changes
+      if change.type is 'add'
+        string += change.lines.join os.EOL
+    if string.length > 0
+      fs.appendFile @file, "#{string}#{os.EOL}"
 
 module.exports = Copier
