@@ -8,13 +8,12 @@ class Copier
   constructor : (params) ->
     @file = path.resolve params.copyTo
     try
-      fs.accessSync(@file, fs.F_OK)
+      fs.accessSync @file, fs.F_OK
     catch e
       fs.writeFile @file, '', 'utf8'
-    console.log "Started Copier!"
+    console.log "Started Backup policy."
 
   receiver : (changes) =>
-    console.log 'Processing changes', changes
     string = ""
     for change in changes
       if change.type is 'add'
