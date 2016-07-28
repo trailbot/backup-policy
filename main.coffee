@@ -1,24 +1,20 @@
 'use strict'
-
 path = require 'path'
 fs = require 'fs'
-os = require 'os'
 
 class Copier
   constructor : (params) ->
-    @file = path.resolve params.copyTo
+    @orig = params.path
+    @dest = path.resolve params.copyTo
+    # Make sure destination path exists
     try
-      fs.accessSync @file, fs.F_OK
+      fs.accessSync @dest, fs.F_OK
     catch e
-      fs.writeFile @file, '', 'utf8'
-    console.log "Started Backup policy."
+      fs.writeFile @dest, '', 'utf8'
+    console.log "[POLICY][BACKUP]", "Initialized backup of #{@orig} into #{@dest}"
 
   receiver : (changes) =>
-    string = ""
-    for change in changes
-      if change.type is 'add'
-        string += change.lines.join os.EOL
-    if string.length > 0
-      fs.appendFile @file, "#{string}#{os.EOL}"
+    # Read watched file and pipe contents into backup
+    fs.createReadStream(@file).pipe fs.createWriteStream @dest
 
 module.exports = Copier
