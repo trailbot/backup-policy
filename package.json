@@ -1,8 +1,7 @@
 {
   "name": "backup-policy",
-  "version": "0.0.1",
-  "dependencies": {
-  },
+  "version": "0.1.0",
+  "dependencies": {},
   "policy": {
     "language": "coffeescript",
     "params": {
