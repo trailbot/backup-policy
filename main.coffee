@@ -15,6 +15,6 @@ class Copier
 
   receiver : (changes) =>
     # Read watched file and pipe contents into backup
-    fs.createReadStream(@file).pipe fs.createWriteStream @dest
+    fs.createReadStream(@orig).pipe fs.createWriteStream @dest
 
 module.exports = Copier

@@ -1,5 +1,5 @@
 {
-  "name": "policy-copier",
+  "name": "backup-policy",
   "version": "0.0.1",
   "dependencies": {
   },
@@ -12,6 +12,7 @@
         "label": "Backups folder",
         "tip": "Please enter the absolute path of the folder where you want to store the backup."
       }
-    }
+    },
+    "defaultName": "Backup"
   }
 }
