@@ -8,7 +8,9 @@
     "params": {
       "copyTo": {
         "type": "text",
-        "label": "Path to copy to"
+        "required": true,
+        "label": "Backups folder",
+        "tip": "Please enter the absolute path of the folder where you want to store the backup."
       }
     }
   }

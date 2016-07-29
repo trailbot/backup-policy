@@ -4,6 +4,6 @@ This [Trailbot Smart Policy](https://github.com/trailbot/client/wiki/Smart-Polic
 ## Parameters
 This policy accepts the following parameters:
 
-| Name   | Description                                                     | Default value | Compulsory |
+| Name   | Description                                                     | Default value | Required |
 |--------|-----------------------------------------------------------------|---------------|------------|
 | copyTo | Absolute path of the folder where you want to store the backup. | _null_        | :white_check_mark:|
