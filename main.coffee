@@ -4,8 +4,10 @@ fs = require 'fs'
 
 class Copier
   constructor : (params) ->
-    @orig = params.path
-    @dest = path.resolve params.copyTo
+    @orig = path.resolve params.path
+    @filename = path.basename @orig
+    # Calculate destination file path
+    @dest = path.resolve "#{params.copyTo}/#{@filename}"
     # Make sure destination path exists
     try
       fs.accessSync @dest, fs.F_OK
