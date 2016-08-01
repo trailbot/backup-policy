@@ -13,10 +13,10 @@ class Copier
       fs.accessSync @dest, fs.F_OK
     catch e
       fs.writeFile @dest, '', 'utf8'
-    console.log "[POLICY][BACKUP]", "Initialized backup of #{@orig} into #{@dest}"
+    console.log "Initialized backup of #{@orig} into #{@dest}"
 
-  receiver : (changes) =>
+  receiver : (changes, {prev, cur}) =>
     # Read watched file and pipe contents into backup
-    fs.createReadStream(@orig).pipe fs.createWriteStream @dest
+    fs.createWriteFile @dest, cur, 'utf8'
 
 module.exports = Copier
