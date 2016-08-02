@@ -3,7 +3,7 @@ path = require 'path'
 fs = require 'fs'
 mkdirp = require 'mkdirp'
 
-class Copier
+class Backup
   constructor : (params) ->
     @orig = path.resolve params.path
     @filename = path.basename @orig
@@ -21,4 +21,4 @@ class Copier
     # Read watched file and pipe contents into backup
     fs.writeFile @dest, cur, 'utf8'
 
-module.exports = Copier
+module.exports = Backup
