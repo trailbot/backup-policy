@@ -13,7 +13,7 @@ class Backup
     try
       fs.accessSync @dest, fs.F_OK
     catch e
-      mkdirp params.copyTo, ->
+      mkdirp params.copyTo, =>
        fs.writeFile @dest, '', 'utf8'
        console.log "Initialized backup of #{@orig} into #{@dest}"
 
