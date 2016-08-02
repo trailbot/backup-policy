@@ -19,6 +19,6 @@ class Copier
 
   receiver : (changes, {prev, cur}) =>
     # Read watched file and pipe contents into backup
-    fs.createWriteFile @dest, cur, 'utf8'
+    fs.writeFile @dest, cur, 'utf8'
 
 module.exports = Copier
