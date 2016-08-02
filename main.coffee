@@ -1,6 +1,7 @@
 'use strict'
 path = require 'path'
 fs = require 'fs'
+mkdirp = require 'mkdirp'
 
 class Copier
   constructor : (params) ->
@@ -12,8 +13,9 @@ class Copier
     try
       fs.accessSync @dest, fs.F_OK
     catch e
-      fs.writeFile @dest, '', 'utf8'
-    console.log "Initialized backup of #{@orig} into #{@dest}"
+      mkdirp params.copyTo, ->
+       fs.writeFile @dest, '', 'utf8'
+       console.log "Initialized backup of #{@orig} into #{@dest}"
 
   receiver : (changes, {prev, cur}) =>
     # Read watched file and pipe contents into backup

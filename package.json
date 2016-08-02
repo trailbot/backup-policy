@@ -1,7 +1,9 @@
 {
   "name": "backup-policy",
   "version": "0.1.1",
-  "dependencies": {},
+  "dependencies": {
+    "mkdirp": "^0.5.1"
+  },
   "policy": {
     "language": "coffeescript",
     "params": {
