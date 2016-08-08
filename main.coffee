@@ -5,20 +5,27 @@ mkdirp = require 'mkdirp'
 
 class Backup
   constructor : (params) ->
-    @orig = path.resolve params.path
+    @prev = params.version is 'prev'
+    @timed = params.naming is 'timed'
+    @folder = path.resolve params.copyTo
     @filename = path.basename @orig
     # Calculate destination file path
-    @dest = path.resolve "#{params.copyTo}/#{@filename}"
-    # Make sure destination path exists
+    @dest = "#{@folder}/#{@filename}.bak"
+    # Make sure destination folder exists
     try
       fs.accessSync @dest, fs.F_OK
     catch e
       mkdirp params.copyTo, =>
-       fs.writeFile @dest, '', 'utf8'
-       console.log "Initialized backup of #{@orig} into #{@dest}"
+       console.log "Initialized backup of #{@orig} into #{@folder}"
 
-  receiver : (changes, {prev, cur}) =>
-    # Read watched file and pipe contents into backup
-    fs.writeFile @dest, cur, 'utf8'
+  receiver : ({prev, cur}) =>
+    state = cur
+    if @prev
+      state = prev
+    # Update file name if backup naming is "timed"
+    if @orig
+      @dest = "#{@folder}/#{@filename}@#{state.time}.bak"
+    # Write backup
+    fs.writeFile @dest, state.content, 'utf8'
 
 module.exports = Backup

@@ -1,6 +1,6 @@
 {
   "name": "backup-policy",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "dependencies": {
     "mkdirp": "^0.5.1"
   },
@@ -12,6 +12,25 @@
         "required": true,
         "label": "Backups folder",
         "tip": "Please enter the absolute path of the folder where you want to store the backup."
+      },
+      "version": {
+        "type": "select",
+        "label": "File version",
+        "options": {
+          "prev": "Backup previous version (before modification)",
+          "cur": "Backup current version (after modification)"
+        },
+        "default": "cur"
+      },
+      "naming": {
+        "type": "select",
+        "label": "Backup naming",
+        "options": {
+          "simple": "Simple: filename.bak",
+          "timed": "Timestamped: filename@timestamp.bak"
+        },
+        "default": "simple",
+        "tip": "Choosing \"simple\" will keep only one backup file and overwrite it every time. On the other hand, \"timestamped\" will create a new file upon every modification and will include the date and time in the backup file name."
       }
     },
     "defaultName": "Backup"
